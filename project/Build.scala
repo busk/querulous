@@ -4,8 +4,11 @@ import Keys._
 object QuerulousProject extends Build {
 
   val buildSettings = Defaults.defaultSettings ++ Seq(
-    organization := "Boston Technologies",
-    scalaVersion := "2.9.1"   
+    organization := "com.bostontechnologies",
+    scalaVersion := "2.9.1",   
+    version := "1.0.1",
+    publishTo := Some("BT maven artifactory" at "http://maven.bostontechnologies.com/artifactory/libs-releases-local"),
+    credentials += Credentials("Artifactory Realm", "maven.bostontechnologies.com", "artifactory", "Bt2@rTif@ct0ry!")
   )
 
   val dbcp      = "commons-dbcp" % "commons-dbcp"         % "1.4"
@@ -29,18 +32,10 @@ object QuerulousProject extends Build {
 
   val customResolvers = Seq(twitterRepo)
 
-  lazy val coreProject = Project(
-    "querulous-core", 
+  val root = Project(
+    "querulous", 
     file("querulous-core"),
     settings = buildSettings ++ Seq(libraryDependencies ++= dependencies) ++ Seq(resolvers ++= customResolvers),
     configurations = Configurations.default
   )  
-
-  val root = Project(
-    "querulous",
-    file("."),
-    settings = buildSettings,
-    configurations = Configurations.default
-  ) aggregate(coreProject)
-
 }
