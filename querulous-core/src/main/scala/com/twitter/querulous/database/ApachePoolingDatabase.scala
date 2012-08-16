@@ -68,7 +68,7 @@ extends Database {
   config.maxWait = openTimeout.inMillis
 
   config.timeBetweenEvictionRunsMillis = checkConnectionHealthWhenIdleFor.inMillis
-  config.testWhileIdle = false
+  config.testWhileIdle = true
   config.testOnBorrow = checkConnectionHealthOnReservation
   config.minEvictableIdleTimeMillis = evictConnectionIfIdleFor.inMillis
 
