@@ -3,7 +3,7 @@ package com.twitter.querulous.unit
 import java.sql.{SQLException, Connection}
 import scala.collection.mutable
 import com.twitter.querulous.TestEvaluator
-import com.twitter.querulous.evaluator.StandardQueryEvaluator
+import com.twitter.querulous.evaluator.{Transaction, StandardQueryEvaluator}
 import com.twitter.querulous.query._
 import com.twitter.querulous.test.FakeDBConnectionWrapper
 import com.twitter.querulous.ConfiguredSpecification
@@ -40,7 +40,7 @@ class QueryEvaluatorSpec extends ConfiguredSpecification with JMocker with Class
             one(connection).setAutoCommit(true)
           }
 
-          queryEvaluator.transaction { transaction =>
+          queryEvaluator.transaction { (transaction: Transaction) =>
             transaction.selectOne("SELECT 1") { _.getInt("1") }
           }
         }

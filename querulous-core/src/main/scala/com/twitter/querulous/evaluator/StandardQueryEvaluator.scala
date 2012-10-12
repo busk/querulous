@@ -3,6 +3,7 @@ package com.twitter.querulous.evaluator
 import java.sql.ResultSet
 import com.twitter.querulous.database.{Database, DatabaseFactory}
 import com.twitter.querulous.query.{QueryClass, QueryFactory}
+import scalaz.Validation
 
 class StandardQueryEvaluatorFactory(
   databaseFactory: DatabaseFactory,
@@ -55,6 +56,23 @@ class StandardQueryEvaluator(protected val database: Database, queryFactory: Que
           try {
             transaction.rollback()
           } catch { case _ => () }
+          throw e
+      }
+    }
+  }
+
+  def transaction[E, T](f: Transaction => Validation[E, T]) = {
+    withTransaction { transaction =>
+      transaction.begin()
+      try {
+        val rv = f(transaction)
+        rv.fold(e => transaction.rollback(), s => transaction.commit())
+        rv
+      } catch {
+        case e: Throwable =>
+          try {
+            transaction.rollback()
+          } catch { case e => println("ERROR: Could not roll back transaction: " + e.getStackTrace) }
           throw e
       }
     }

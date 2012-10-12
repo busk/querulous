@@ -6,7 +6,7 @@ object QuerulousProject extends Build {
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "com.bostontechnologies",
     scalaVersion := "2.9.1",   
-    version := "1.0.2",
+    version := "1.0.3",
     publishTo := Some("BT maven artifactory" at "http://maven.bostontechnologies.com/artifactory/libs-releases-local"),
     credentials += Credentials("Artifactory Realm", "maven.bostontechnologies.com", "artifactory", "Bt2@rTif@ct0ry!")
   )
@@ -14,7 +14,8 @@ object QuerulousProject extends Build {
   val dbcp      = "commons-dbcp" % "commons-dbcp"         % "1.4"
   val mysqljdbc = "mysql"        % "mysql-connector-java" % "5.1.18"
   val pool      = "commons-pool" % "commons-pool"         % "1.5.4"
-  val utilCore  = "com.twitter" %% "util-core"           % "4.0.1"
+  val utilCore  = "com.twitter" %% "util-core"            % "4.0.1"
+  val scalaz    = "org.scalaz"  %% "scalaz-core"          % "6.0.4"
   
   val utilEval   = "com.twitter"            %% "util-eval"          % "4.0.1"	  % "test"  
   val hamcrest   = "org.hamcrest"            % "hamcrest-all"       % "1.1"       % "test"
@@ -26,7 +27,7 @@ object QuerulousProject extends Build {
   val dbcpTests  = "commons-dbcp"            % "commons-dbcp-tests" % "1.4"       % "test"
 
   val dependencies = Seq(dbcp, mysqljdbc, pool, utilCore, utilEval, hamcrest, specs, objenesis, jmock,
-	cglib, asm, dbcpTests)
+	cglib, asm, dbcpTests, scalaz)
 
   val twitterRepo = "Twitter Maven Repo" at "http://maven.twttr.com/"
 
