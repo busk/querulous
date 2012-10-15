@@ -6,7 +6,7 @@ object QuerulousProject extends Build {
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "com.bostontechnologies",
     scalaVersion := "2.9.1",   
-    version := "1.0.3",
+    version := "1.0.4",
     publishTo := Some("BT maven artifactory" at "http://maven.bostontechnologies.com/artifactory/libs-releases-local"),
     credentials += Credentials("Artifactory Realm", "maven.bostontechnologies.com", "artifactory", "Bt2@rTif@ct0ry!")
   )
