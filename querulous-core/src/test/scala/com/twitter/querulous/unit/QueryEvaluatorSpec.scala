@@ -78,7 +78,7 @@ class QueryEvaluatorSpec extends ConfiguredSpecification with JMocker with Class
           queryEvaluator.execute("CREATE TABLE foo (bar INT) ENGINE=INNODB")
 
           try {
-            queryEvaluator.transaction { transaction =>
+            queryEvaluator.transaction { transaction: Transaction =>
               transaction.execute("INSERT INTO foo VALUES (1)")
               throw new Exception("oh noes")
             }
@@ -92,7 +92,7 @@ class QueryEvaluatorSpec extends ConfiguredSpecification with JMocker with Class
         "when there is not an exception" >> {
           queryEvaluator.execute("CREATE TABLE foo (bar VARCHAR(50), baz INT) ENGINE=INNODB")
 
-          queryEvaluator.transaction { transaction =>
+          queryEvaluator.transaction { transaction: Transaction =>
             transaction.execute("INSERT INTO foo VALUES (?, ?)", "one", 2)
           }
 

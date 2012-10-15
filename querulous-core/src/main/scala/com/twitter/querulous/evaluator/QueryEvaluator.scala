@@ -5,6 +5,7 @@ import java.sql.ResultSet
 import com.twitter.conversions.time._
 import com.twitter.querulous.database._
 import com.twitter.querulous.query._
+import scalaz.Validation
 
 
 object QueryEvaluator extends QueryEvaluatorFactory {
@@ -87,4 +88,6 @@ trait QueryEvaluator {
     insert(QueryClass.Execute, query, params: _*)
 
   def transaction[T](f: Transaction => T): T
+
+  def transaction[E, T](f: Transaction => Validation[E, T]): Validation[E, T] = throw new UnsupportedOperationException
 }

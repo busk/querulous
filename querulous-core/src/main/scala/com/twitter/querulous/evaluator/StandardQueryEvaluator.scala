@@ -61,7 +61,7 @@ class StandardQueryEvaluator(protected val database: Database, queryFactory: Que
     }
   }
 
-  def transaction[E, T](f: Transaction => Validation[E, T]) = {
+  override def transaction[E, T](f: Transaction => Validation[E, T]) = {
     withTransaction { transaction =>
       transaction.begin()
       try {
