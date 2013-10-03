@@ -113,7 +113,7 @@ class SqlQuery(connection: Connection, val query: String, params: Any*) extends 
       statement.cancel()
       statement.close()
     } catch {
-      case _ =>
+      case _: Throwable =>
     }
   }
 
@@ -124,7 +124,7 @@ class SqlQuery(connection: Connection, val query: String, params: Any*) extends 
       try {
         statement.close()
       } catch {
-        case _ =>
+        case _: Throwable =>
       }
     }
   }
