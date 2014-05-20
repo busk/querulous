@@ -6,7 +6,7 @@ object QuerulousProject extends Build {
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "com.bostontechnologies",
     scalaVersion := "2.10.3",
-    version := "1.0.5",
+    version := "1.0.6",
     publishTo := Some(Resolver.ssh("spix-ssh-repo", "mothership.spixdiscovery.com", "/home/ubuntu/production/repos") as("ubuntu", new java.io.File(Path.userHome + "/.ssh/busk-stage.pem")) withPermissions("0644") )
     // credentials += Credentials("Artifactory Realm", "maven.bostontechnologies.com", "artifactory", "Bt2@rTif@ct0ry!")
   )
