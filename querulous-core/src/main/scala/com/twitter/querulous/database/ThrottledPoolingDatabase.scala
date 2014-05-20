@@ -47,6 +47,12 @@ class PooledConnection(c: Connection, p: ObjectPool) extends DelegatingConnectio
     invalidateConnection()
     try { c.close() } catch { case _: SQLException => }
   }
+
+  def abort(x$1: java.util.concurrent.Executor): Unit = ???
+  def getNetworkTimeout(): Int = ???
+  def getSchema(): String = ???
+  def setNetworkTimeout(x$1: java.util.concurrent.Executor,x$2: Int): Unit = ???
+  def setSchema(x$1: String): Unit = ???
 }
 
 class ThrottledPool(factory: () => Connection, val size: Int, timeout: Duration,

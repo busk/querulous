@@ -137,7 +137,7 @@ extends AsyncDatabase {
   // Equality overrides.
   override def equals(other: Any) = other match {
     case other: BlockingDatabaseWrapper => database eq other.database
-    case _ => false
+    case _: Throwable => false
   }
   override def hashCode = database.hashCode
 }

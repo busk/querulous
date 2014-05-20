@@ -86,7 +86,7 @@ class StandardQueryEvaluator(protected val database: Database, queryFactory: Que
     other match {
       case other: StandardQueryEvaluator =>
         database eq other.database
-      case _ =>
+      case _: Throwable =>
         false
     }
   }

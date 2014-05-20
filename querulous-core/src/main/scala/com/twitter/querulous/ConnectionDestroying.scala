@@ -34,6 +34,6 @@ trait ConnectionDestroying {
     }
 
     // "close" the wrapper so that it updates its internal bookkeeping, just do it
-    try { conn.close() } catch { case _ => }
+    try { conn.close() } catch { case _: Throwable => }
   }
 }
