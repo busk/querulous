@@ -59,4 +59,6 @@ with DatabaseProxy {
       }
     }
   }
+
+  def shutdown() { database.shutdown() }
 }

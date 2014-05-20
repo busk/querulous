@@ -37,4 +37,6 @@ with AutoDisabler {
   }
 
   def close(connection: Connection) { database.close(connection) }
+
+  def shutdown() { database.shutdown() }
 }

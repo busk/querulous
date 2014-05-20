@@ -41,6 +41,8 @@ extends Database {
     }
   }
 
+  def shutdown() { }
+
   def open() = connectionFactory.createConnection()
   override def toString = hosts.head + "_" + name
 }

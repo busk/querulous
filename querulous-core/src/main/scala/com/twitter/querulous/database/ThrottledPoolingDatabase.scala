@@ -268,6 +268,9 @@ class ThrottledPoolingDatabase(
     try { connection.close() } catch { case _: SQLException => }
   }
 
+
+  def shutdown() = { pool.close() }
+
   protected def mkConnection(): Connection = {
     DriverManager.getConnection(url(hosts, name, urlOptions), username, password)
   }

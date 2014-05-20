@@ -90,4 +90,6 @@ trait QueryEvaluator {
   def transaction[T](f: Transaction => T): T
 
   def transaction[E, T](f: Transaction => Validation[E, T]): Validation[E, T] = throw new UnsupportedOperationException
+
+  def shutdown()
 }

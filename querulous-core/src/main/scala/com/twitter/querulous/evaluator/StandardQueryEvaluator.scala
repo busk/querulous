@@ -78,6 +78,8 @@ class StandardQueryEvaluator(protected val database: Database, queryFactory: Que
     }
   }
 
+  def shutdown() { database.shutdown() }
+
   private def withTransaction[A](f: Transaction => A) = {
     database.withConnection { connection => f(new Transaction(queryFactory, connection)) }
   }

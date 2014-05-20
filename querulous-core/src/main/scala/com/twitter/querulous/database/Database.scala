@@ -61,6 +61,8 @@ trait Database {
 
   def close(connection: Connection)
 
+  def shutdown()
+
   def withConnection[A](f: Connection => A): A = {
     val connection = open()
     try {

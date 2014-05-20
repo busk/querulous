@@ -32,6 +32,8 @@ class BlockingDatabaseWrapperSpec extends Specification {
       def close(c: Connection) { openConns.decrementAndGet }
 
       def reset() { totalOpens.set(0); openConns.set(0) }
+
+      override def shutdown() = {openConns.set(0); totalOpens.set(0)}
     }
 
     val numThreads = 2

@@ -27,4 +27,6 @@ with FakeDatabase {
   def close(connection: Connection) {
     before.foreach { _("close") }
   }
+
+  def shutdown() = {}
 }

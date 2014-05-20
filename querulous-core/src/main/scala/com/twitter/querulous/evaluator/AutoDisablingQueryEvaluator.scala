@@ -49,4 +49,6 @@ class AutoDisablingQueryEvaluator (
     }
   }
 
+  def shutdown() { queryEvaluator.shutdown() }
+
 }
